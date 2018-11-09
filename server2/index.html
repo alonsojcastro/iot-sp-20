@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <script language="javascript" src="libraries/p5.dom.js"></script>
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+ <!--  <script language="javascript" type="text/javascript" src="sketch.js"></script> -->
+  <!-- this line removes any default padding and style. you might only need one of these values set. -->
+  <style> body {padding: 0; margin: 0;} </style>
+
+<script>
+  var port=8000
+  var url='iotclass.local';
+  var red,blue,green;
+  var socket = io.connect(url+':'+port);
+  socket.on('fromserver', function (data) {
+    console.log(data)
+    x=parseInt(data.x)
+    y=parseInt(data.y)
+    z=parseInt(data.z)
+    sendSlider()
+    
+  });
+
+  // setInterval(function(){ sendSlider(); }, 10);
+
+
+
+socket.on('toscreen', function (data) {
+    console.log(data);
+    document.getElementById("r_space").innerHTML = data.r;
+  document.getElementById("g_space").innerHTML = data.g;
+  document.getElementById("b_space").innerHTML = data.b;
+    document.body.style.backgroundColor = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+  });
+
+
+
+
+  function toColor(){
+  var rval = document.getElementById('rval').value;
+  var gval = document.getElementById('gval').value;
+  var bval = document.getElementById('bval').value;
+    socket.emit('fromwebclient', { r:rval,g:gval,b:bval });
+}
+</script>
+
+  <style>
+      body {
+        background-color: #880000;
+        
+      }
+      a {
+        color: #ffffff;
+      }
+      #text{
+        position: absolute;
+        z-index: 2;
+        top:130px;
+        right:10px;
+        opacity: 0.5;
+        width:200px;
+        font-size: 25px;
+        
+      }
+      
+      #container{
+        position:absolute;
+        top: 0px;
+        left:0px;
+        z-index: -1;
+        text-align: center;
+      }
+
+      #formspace{
+        position:static;
+        z-index: 1;
+        right: 300px;
+        top: 0px;
+        width: 220px;
+        color: white;
+        font-family: monospace;
+        text-align: center;
+      }
+      
+      #bg p{
+        font-size: 13px;
+        padding-top: 0px;
+        padding-left:20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <div id="r_space"><p>R Value</p></div>
+    <div id="g_space"><p>G Value</p></div>
+    <div id="b_space"><p>B Value</p></div>
+    
+    <form id="formspace">
+      <input id="rval" type="text" name="rval" placeholder="rval">
+      <input id="gval" type="text" name="gval" placeholder="gval">
+      <input id="bval" type="text" name="bval" placeholder="bval">
+      <div id="bg"><p>Enter RGB then click color</p>
+            <input onclick="toColor()" id="submit" type="button" value="color">
+
+      </div>
+    </form>
+  </body>
+</html>

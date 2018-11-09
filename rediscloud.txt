@@ -1,0 +1,1 @@
+artid , fname , artimg , artdes , art3d , artvid , artimgs undefined

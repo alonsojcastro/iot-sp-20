@@ -11,14 +11,14 @@ import urllib2
 # Change to your own account information
 tries = 0
 while True:
-	if (tries>60):
+	if (tries>10):
 		exit()
 	try:
 
-		user_name = "enter your name"
-		to = 'youraddresshere@gmail.com'
-		gmail_user = 'youraddresshere@gmail.com'
-		gmail_password = 'yourpasswordhere'
+		user_name = "your name"
+		to = 'your-email'
+		gmail_user = 'same-email'
+		gmail_password = 'email-password'
 		smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
 		smtpserver.ehlo()
 		smtpserver.starttls()

@@ -7,8 +7,8 @@
 import RPi.GPIO as GPIO, time
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(4,GPIO.OUT)
-p=GPIO.PWM(4,50) # channel=12 frequency=50hz
+GPIO.setup(18,GPIO.OUT)
+p=GPIO.PWM(18,50) # channel=12 frequency=50hz
 p.start(0)
 
 try:

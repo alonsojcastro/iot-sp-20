@@ -7,91 +7,85 @@ var PORT="6379";
 var client = redis.createClient(PORT, HOST);
 ///CONNECTION
 client.on('connect', function(err) {
-    // console.log('connected');
+    console.log('connected');
 });
 
-
-
-
-// ////SET KEY:FRAME
-// client.set('name', 'ayodamola', function(err, reply) {
+//
+//
+//
+// // ////SET KEY:FRAME
+// client.set('name', 'alonso', function(err, reply) {
 //   console.log(reply);
 // });
-
-// ///GET KEY:FRAME
+//
+// // ///GET KEY:FRAME
 // client.get('name', function(err, reply) {
 //     console.log(reply);
 // });
-
-
-
-// client.hmset('frameworks', 'javascript', 'AngularJS', 'css', 'Bootstrap', 'node', 'Express');
-
-
-
-///SET COLLECTION
+//
+//
+//
+// // client.hmset('frameworks', 'javascript', 'AngularJS', 'css', 'Bootstrap', 'node', 'Express');
+//
+//
+//
+// ///SET COLLECTION
 // client.hmset('AGES', {
-// 	'Ayo': '20', 
-// 	'Wole': '55', 
-// 	'Kemi': '3'
+// 	'Alonso': '82',
+// 	'Joan': '55',
+// 	'Eddy': '3'
 // });
-
-// ////GET HASH
+//
+// // ////GET HASH
 // client.hgetall('AGES', function(err, object) {
 //     console.log(object);
 // });
-
-
+//
+//
 // client.exists('AGES', function(err, reply) {
-
+//
 //     if (reply === 1) {
 //         console.log('exists');
 //     } else {
 //         console.log('doesn\'t exist');
 //     }
 // });
-
-
-/////SET COLLECTION
+//
+//
+// /////SET COLLECTION
 // client.hmset('STUDENTS', {
-// 	'FirstName': 'Ayo', 
-// 	'LastName': 'Okunseinde', 
-// 	'Age': '3'
+// 	'FirstName': 'Alonso',
+// 	'LastName': 'Castro',
+// 	'Age': '2'
 // });
-
-
-////DELETING
+//
+//
+// ////DELETING
 // client.del('AGES', function(err, reply) {
 //     console.log(reply);
 // });
-
-// client.hmset('aokunseinde@gmail.com', 'Password','yoyo','FirstName', 'Ayodamola', 'LastName', 'Okunseinde', 'Age', '55');
-// client.exists('aokunseinde@gmail.com', function(err, reply) {
+//
+// client.hmset('alonsojcastro@gmail.com', 'Password','yoyo','FirstName', 'Alonso', 'LastName', 'Castro', 'Age', '55');
+// client.exists('alonsojcastro@gmail.com', function(err, reply) {
 //     if (reply === 1) {
 //         console.log('exists');
 //     } else {
 //         console.log('doesn\'t exist');
 //     }
 // });
-
-
+//
 // client.hgetall('ID001', function(err, object) {
 //     console.log(object);
 // });
-
-
-
-
-
 
 // //////REGISTER
 // var prompt = require('prompt');
 // prompt.start();
 // var email;
-
+//
 // prompt.get(['Email'], function (err, result) {
 // email=result.Email;
-
+//
 //  client.exists(email, function(err, reply) {
 //  	if (reply === 1) {
 //  		if(email=="admin"){
@@ -114,9 +108,7 @@ client.on('connect', function(err) {
 //  		}
 //  	});
 // });
-
-
-
+//
 // function registered(){
 // 	console.log("YOU ARE REGISTERED... please enter your Password");
 // 	client.hgetall(email, function(err, object) {
@@ -126,17 +118,17 @@ client.on('connect', function(err) {
 // 			}else{
 // 				console.log("Bad Password");
 // 				registered();
-				
+//
 // 			}
 // 		});
 // 	});
 // }
-
+//
 // function notRegister(){
 // 	console.log("NOT REGISTERED... would you like to register?");
 // 	prompt.get(['Register'], function (err, result) {
 // 		if(result.Register=="y"||"yes"||"YES"||"Y"){
-// 			prompt.get(['Password',"FirstName","LastName","Age"], function (err, result) {	
+// 			prompt.get(['Password',"FirstName","LastName","Age"], function (err, result) {
 // 				client.hmset(email, 'Password',result.Password,'FirstName', result.FirstName, 'LastName', result.LastName, 'Age', result.Age,function(err, reply){
 // 					console.log(reply+" "+result.FirstName+" you are now REGISTERED");
 // 				});

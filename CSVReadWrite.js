@@ -1,22 +1,22 @@
-const csv = require('csv-parser');  
+const csv = require('csv-parser');
 const fs = require('fs');
 const fastcsv = require('fast-csv');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const d3 = require("d3");
 
 /////CVS READ
-// fs.createReadStream('CVSTVC.csv')  
-//   .pipe(csv())
-//   .on('data', (row) => {
-//     console.log(row);
-//   })
-//   .on('end', () => {
-//     console.log('CSV file successfully processed');
-//   });
+fs.createReadStream('CeeSVTeeSV.csv')
+  .pipe(csv())
+  .on('data', (row) => {
+    console.log(row);
+  })
+  .on('end', () => {
+    console.log('CSV file successfully processed');
+  });
 
 
-////CVS WRITE
-// const data = [  
+////CSV WRITE
+// const data = [
 //   {
 //     name: 'John',
 //     surname: 'Snow',
@@ -35,9 +35,8 @@ const d3 = require("d3");
 //   }
 // ];
 
-  
-// const csvWriter = createCsvWriter({  
-//   path: 'out.csv',
+// const csvWriter = createCsvWriter({
+//   path: 'CeeSVeeOut.csv',
 //   header: [
 //     {id: 'name', title: 'Name'},
 //     {id: 'surname', title: 'Surname'},
@@ -45,14 +44,14 @@ const d3 = require("d3");
 //     {id: 'subject', title: 'Subject'},
 //   ]
 // });
-
-// csvWriter  
+//
+// csvWriter
 //   .writeRecords(data)
 //   .then(()=> console.log('The CSV file was written successfully'));
 
 
 //////////////////////CVS fast-csv
-// const data = [  
+// const data = [
 //   {
 //     name: 'John',
 //     surname: 'Snow',
@@ -71,9 +70,9 @@ const d3 = require("d3");
 //   }
 // ];
 
-  
-// const ws = fs.createWriteStream("out.csv");  
-// fastcsv  
+
+// const ws = fs.createWriteStream("CeeSVeeOut.csv");
+// fastcsv
 //   .write(data, { headers: true })
 //   .pipe(ws);
 
@@ -82,9 +81,9 @@ const d3 = require("d3");
 // fs.readFile("CVSTVC.tsv", "utf8", function(error, data) {
 //   data = d3.tsvParse(data);
 //   console.log(data.length);
-
-// for (x in data) {
-// console.log(x)
-// console.log(data[x])
-// }
+//
+//   for (x in data) {
+//     console.log(x)
+//     console.log(data[x])
+//   }
 // });

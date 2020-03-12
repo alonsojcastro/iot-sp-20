@@ -1,6 +1,8 @@
 var redis = require('redis');
 var client = redis.createClient(); //creates a new client
-var HOST="iotclass.local"; //this is local host
+var HOST="localhost"; //this is local host
+// var HOST="iotclass.local"; //this is local host
+
 var PORT="6379";
 var client = redis.createClient(PORT, HOST);
 ///CONNECTION
@@ -17,9 +19,9 @@ client.on('connect', function(err) {
 // });
 
 // ///GET KEY:FRAME
-client.get('name', function(err, reply) {
-    console.log(reply);
-});
+// client.get('name', function(err, reply) {
+//     console.log(reply);
+// });
 
 
 

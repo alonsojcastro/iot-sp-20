@@ -9,53 +9,53 @@
   <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
  <!--  <script language="javascript" type="text/javascript" src="sketch.js"></script> -->
   <!-- this line removes any default padding and style. you might only need one of these values set. -->
-  <style> body {padding: 0; margin: 0;} </style>
+  <style> 
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
 
-<script>
-  var port=8000
-  var url='iotclass.local';
-  var red,blue,green;
-  var socket = io.connect(url+':'+port);
-  socket.on('fromserver', function (data) {
-    console.log(data)
-    x=parseInt(data.x)
-    y=parseInt(data.y)
-    z=parseInt(data.z)
-    sendSlider()
-    
-  });
+  <script>
+    var port=8000
+    var url='iotclass.local';
+    var red,blue,green;
+    var socket = io.connect(url+':'+port);
+    socket.on('fromserver', function (data) {
+      console.log(data)
+      x=parseInt(data.x)
+      y=parseInt(data.y)
+      z=parseInt(data.z)
+      sendSlider()
+    });
 
-  // setInterval(function(){ sendSlider(); }, 10);
+    // setInterval(function(){ sendSlider(); }, 10);
 
+  socket.on('toscreen', function (data) {
+      console.log(data);
+      document.getElementById("r_space").innerHTML = data.r;
+    document.getElementById("g_space").innerHTML = data.g;
+    document.getElementById("b_space").innerHTML = data.b;
+      document.body.style.backgroundColor = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+    });
 
-
-socket.on('toscreen', function (data) {
-    console.log(data);
-    document.getElementById("r_space").innerHTML = data.r;
-  document.getElementById("g_space").innerHTML = data.g;
-  document.getElementById("b_space").innerHTML = data.b;
-    document.body.style.backgroundColor = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
-  });
-
-
-
-
-  function toColor(){
-  var rval = document.getElementById('rval').value;
-  var gval = document.getElementById('gval').value;
-  var bval = document.getElementById('bval').value;
-    socket.emit('fromwebclient', { r:rval,g:gval,b:bval });
-}
-</script>
+    function toColor(){
+    var rval = document.getElementById('rval').value;
+    var gval = document.getElementById('gval').value;
+    var bval = document.getElementById('bval').value;
+      socket.emit('fromwebclient', { r:rval,g:gval,b:bval });
+  }
+  </script>
 
   <style>
       body {
-        background-color: #880000;
-        
+        background-color: #880000;   
       }
+    
       a {
         color: #ffffff;
       }
+    
       #text{
         position: absolute;
         z-index: 2;
@@ -63,8 +63,7 @@ socket.on('toscreen', function (data) {
         right:10px;
         opacity: 0.5;
         width:200px;
-        font-size: 25px;
-        
+        font-size: 25px;      
       }
       
       #container{
@@ -104,10 +103,12 @@ socket.on('toscreen', function (data) {
       <input id="rval" type="text" name="rval" placeholder="rval">
       <input id="gval" type="text" name="gval" placeholder="gval">
       <input id="bval" type="text" name="bval" placeholder="bval">
+      
       <div id="bg"><p>Enter RGB then click color</p>
             <input onclick="toColor()" id="submit" type="button" value="color">
-
       </div>
+      
     </form>
+    
   </body>
 </html>
